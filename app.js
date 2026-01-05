@@ -42,7 +42,7 @@ const SAMPLE_WEAPONS = [
             barrel_length: '419 mm',
             magazine_capacity: '20 mermi'
         },
-        description: 'Türk Silahlı Kuvvetleri'nin standart piyade tüfeği.'
+        description: 'Türk Silahlı Kuvvetleri\'nin standart piyade tüfeği.'
     },
     {
         id: '2',
@@ -60,10 +60,10 @@ const SAMPLE_WEAPONS = [
     },
     {
         id: '3',
-        name: 'SAR 109T',
+        name: 'SAR 9',
         type: 'Tabanca',
         caliber: '9x19mm',
-        manufacturer: 'Sarsilmaz',
+        manufacturer: 'Sarsılmaz',
         specifications: {
             weight: '0.95 kg',
             length: '200 mm',
@@ -74,20 +74,19 @@ const SAMPLE_WEAPONS = [
     }
 ];
 
-// Uygulama State
-let currentTab = 'legislation';
-let currentView = 'list'; // 'list' veya 'detail'
+// Uygulama state
+let currentTab = 'legislation'; // legislation | weapons
+let currentView = 'list';       // list | detail
 let currentItem = null;
 let legislationData = [...SAMPLE_LEGISLATION];
 let weaponsData = [...SAMPLE_WEAPONS];
 let isOnline = navigator.onLine;
 
-// DOM Elements
+// DOM
 const content = document.getElementById('content');
 const offlineIndicator = document.getElementById('offline-indicator');
 const navItems = document.querySelectorAll('.nav-item');
 
-// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
     setupEventListeners();
@@ -99,7 +98,7 @@ function initializeApp() {
 }
 
 function setupEventListeners() {
-    // Navigation
+    // Bottom nav tıklamaları
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             const tab = item.dataset.tab;
@@ -107,7 +106,7 @@ function setupEventListeners() {
         });
     });
 
-    // Online/Offline status
+    // Online / offline
     window.addEventListener('online', updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
 }
@@ -117,7 +116,6 @@ function switchTab(tab) {
     currentView = 'list';
     currentItem = null;
 
-    // Update nav
     navItems.forEach(item => {
         if (item.dataset.tab === tab) {
             item.classList.add('active');
@@ -157,7 +155,7 @@ function renderLegislationList() {
                     <p>${item.summary}</p>
                     <div class="meta">
                         <span>📁 ${item.category}</span>
-                        <span>📋 ${item.number}</span>
+                        <span>📄 ${item.number}</span>
                         <span>📅 ${item.date}</span>
                     </div>
                 </div>
@@ -166,7 +164,6 @@ function renderLegislationList() {
     `;
     content.innerHTML = html;
 
-    // Search functionality
     document.getElementById('search-input').addEventListener('input', (e) => {
         filterLegislation(e.target.value);
     });
@@ -185,7 +182,7 @@ function renderWeaponsList() {
                     <div class="meta">
                         <span>🔫 ${item.type}</span>
                         <span>📏 ${item.caliber}</span>
-                        <span>🏭 ${item.manufacturer}</span>
+                        <span🏭 ${item.manufacturer}</span>
                     </div>
                 </div>
             `).join('')}
@@ -193,7 +190,6 @@ function renderWeaponsList() {
     `;
     content.innerHTML = html;
 
-    // Search functionality
     document.getElementById('search-input').addEventListener('input', (e) => {
         filterWeapons(e.target.value);
     });
@@ -294,7 +290,7 @@ function goBack() {
 }
 
 function filterLegislation(query) {
-    const filtered = SAMPLE_LEGISLATION.filter(item => 
+    const filtered = SAMPLE_LEGISLATION.filter(item =>
         item.title.toLowerCase().includes(query.toLowerCase()) ||
         item.category.toLowerCase().includes(query.toLowerCase()) ||
         item.summary.toLowerCase().includes(query.toLowerCase())
@@ -307,7 +303,7 @@ function filterLegislation(query) {
             <p>${item.summary}</p>
             <div class="meta">
                 <span>📁 ${item.category}</span>
-                <span>📋 ${item.number}</span>
+                <span>📄 ${item.number}</span>
                 <span>📅 ${item.date}</span>
             </div>
         </div>
@@ -315,7 +311,7 @@ function filterLegislation(query) {
 }
 
 function filterWeapons(query) {
-    const filtered = SAMPLE_WEAPONS.filter(item => 
+    const filtered = SAMPLE_WEAPONS.filter(item =>
         item.name.toLowerCase().includes(query.toLowerCase()) ||
         item.type.toLowerCase().includes(query.toLowerCase()) ||
         item.manufacturer.toLowerCase().includes(query.toLowerCase())
