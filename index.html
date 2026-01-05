@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="description" content="Askeri Asistan - Mevzuat ve Silah Bilgileri">
+    <title>Askeri Asistan</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Offline Indicator -->
+    <div id="offline-indicator" class="offline-indicator hidden">
+        <span>⚠️ Çevrimdışı Mod</span>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <header>
+            <h1>Askeri Asistan</h1>
+        </header>
+
+        <!-- Content Area -->
+        <main id="content">
+            <!-- Mevzuat ekranı burada yüklenecek -->
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-tab="legislation">
+                <span class="icon">📋</span>
+                <span>Mevzuat</span>
+            </button>
+            <button class="nav-item" data-tab="weapons">
+                <span class="icon">🔫</span>
+                <span>Silahlar</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="service-worker-register.js"></script>
+</body>
+</html>
